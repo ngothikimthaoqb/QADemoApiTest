@@ -8,3 +8,4 @@ target
 .springBeans
 .idea
 allure-results
+.DS_Store
