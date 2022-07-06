@@ -27,9 +27,10 @@ public class TestRunner {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
-    @Test(groups = "Cucumber", description = "Runs Cucumber Feature", dataProvider = "scenarios")
-    public void scenario(PickleEventWrapper pickleEvent) throws Throwable {
-        testNGCucumberRunner.runScenario(pickleEvent.getPickleEvent());
+    @Test(groups = "cucumber", description = "Runs Cucumber Scenarios", dataProvider = "scenarios")
+    public void runScenario(PickleEventWrapper pickleWrapper, CucumberFeatureWrapper featureWrapper) throws Throwable {
+        // the 'featureWrapper' parameter solely exists to display the feature file in a test report
+        testNGCucumberRunner.runScenario(pickleWrapper.getPickleEvent());
     }
 
     @DataProvider
