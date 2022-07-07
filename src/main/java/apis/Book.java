@@ -13,16 +13,18 @@ import io.restassured.response.Response;
 import org.apache.commons.httpclient.HttpStatus;
 import org.junit.Assert;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Book {
 
-    public Response getAllBooks() {
+    public Response getAllBooks() throws IOException, URISyntaxException {
         return RestResource.get(BookApiPaths.GET_ALL_BOOKS, "");
     }
 
-    public Response addABookToACollection(AddABookRequest addABookRequest, String token) {
+    public Response addABookToACollection(AddABookRequest addABookRequest, String token) throws IOException, URISyntaxException {
         return RestResource.post(BookApiPaths.ADD_A_BOOkS, addABookRequest, token);
     }
 
@@ -38,7 +40,7 @@ public class Book {
         return addABookRequest;
     }
 
-    public Response replaceABookInACollection(ReplaceABookRequest replaceABookRequest, String token, String existedBook) {
+    public Response replaceABookInACollection(ReplaceABookRequest replaceABookRequest, String token, String existedBook) throws IOException, URISyntaxException {
         String path = BookApiPaths.REPLACE_A_BOOkS.concat(existedBook);
 
         return RestResource.put(path, replaceABookRequest, token);
@@ -52,7 +54,7 @@ public class Book {
         return replaceABookRequest;
     }
 
-    public void verifyReplaceABookFromACollectionSuccessfully(Response replaceBookResponse, String userId, String token) {
+    public void verifyReplaceABookFromACollectionSuccessfully(Response replaceBookResponse, String userId, String token) throws IOException, URISyntaxException {
         Assert.assertEquals(replaceBookResponse.statusCode(), HttpStatus.SC_OK);
         Assert.assertEquals(replaceBookResponse.contentType(), Common.CONTENT_TYPE);
 
@@ -74,7 +76,7 @@ public class Book {
         return deleteBookRequest;
     }
 
-    public Response deleteABookFromCollection(DeleteBookRequest deleteBookRequest, String token){
+    public Response deleteABookFromCollection(DeleteBookRequest deleteBookRequest, String token) throws IOException, URISyntaxException {
         return RestResource.delete(BookApiPaths.DELETE_A_BOOkS, deleteBookRequest, token);
     }
 }

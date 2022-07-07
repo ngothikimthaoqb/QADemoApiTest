@@ -11,9 +11,12 @@ import io.restassured.response.Response;
 import org.apache.commons.httpclient.HttpStatus;
 import org.junit.Assert;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class User {
 
-    public Response createUser(UserRequest userRequest) {
+    public Response createUser(UserRequest userRequest) throws IOException, URISyntaxException {
         return RestResource.post(UserApiPaths.CREATE_USER_PATH, userRequest, "");
     }
 
@@ -36,7 +39,7 @@ public class User {
         Assert.assertNotNull(userResponse.getUserID());
     }
 
-    public Response generateToken(UserRequest userRequest) {
+    public Response generateToken(UserRequest userRequest) throws IOException, URISyntaxException {
         return RestResource.post(UserApiPaths.GENERATE_TOKEN, userRequest, "");
     }
 
@@ -47,7 +50,7 @@ public class User {
         Assert.assertNotNull(generateTokenResponse.getToken());
     }
 
-    public Response getUserInformation(String userId, String token) {
+    public Response getUserInformation(String userId, String token) throws IOException, URISyntaxException {
         String path = UserApiPaths.GET_USER_INFO.concat(userId);
         return RestResource.get(path, token);
     }

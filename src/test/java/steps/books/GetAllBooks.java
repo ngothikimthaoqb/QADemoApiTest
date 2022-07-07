@@ -7,6 +7,9 @@ import io.restassured.response.Response;
 import steps.ScenarioContext;
 import apis.Book;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class GetAllBooks {
     private ScenarioContext scenarioContext;
     private Response listBooksResponse;
@@ -18,7 +21,7 @@ public class GetAllBooks {
 
     @Given("^I get list of books$")
     @When("^I get all books$")
-    public void getAllBooks() {
+    public void getAllBooks() throws IOException, URISyntaxException {
         Book book = new Book();
         listBooksResponse = book.getAllBooks();
         getAllBooksResponse = listBooksResponse.as(GetAllBooksResponse.class);

@@ -10,6 +10,9 @@ import cucumber.api.java.en.When;
 import io.restassured.response.Response;
 import steps.ScenarioContext;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class DeleteABookFromCollection {
 
     private ScenarioContext scenarioContext;
@@ -22,7 +25,7 @@ public class DeleteABookFromCollection {
         this.deleteBookRequest = deleteBookRequest;
     }
     @When("^I delete a book from a collection$")
-    public void deleteABookFromACollection() {
+    public void deleteABookFromACollection() throws IOException, URISyntaxException {
         CreateUserResponse userInfor = (CreateUserResponse) scenarioContext.getContext("UserResponse");
         GenerateTokenResponse tokenInfor = (GenerateTokenResponse) scenarioContext.getContext("GenerateTokenResponse");
         AddABookResponse bookResponse = (AddABookResponse) scenarioContext.getContext("AddABookResponse");

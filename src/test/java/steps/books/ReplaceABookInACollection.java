@@ -11,6 +11,9 @@ import cucumber.api.java.en.When;
 import io.restassured.response.Response;
 import steps.ScenarioContext;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class ReplaceABookInACollection {
     private ScenarioContext scenarioContext;
     private ReplaceABookRequest replaceABookRequest;
@@ -25,7 +28,7 @@ public class ReplaceABookInACollection {
 
     }
     @When("^I replace a book from a collection$")
-    public void replaceABookFromACollection() {
+    public void replaceABookFromACollection() throws IOException, URISyntaxException {
         userInfor = (CreateUserResponse) scenarioContext.getContext("UserResponse");
         tokenInfor = (GenerateTokenResponse) scenarioContext.getContext("GenerateTokenResponse");
         AddABookResponse bookResponse = (AddABookResponse) scenarioContext.getContext("AddABookResponse");
@@ -37,7 +40,7 @@ public class ReplaceABookInACollection {
     }
 
     @Then("^I verify replace a book from a collection successfully$")
-    public void verifyReplaceABookFromACollectionSuccessfully() {
+    public void verifyReplaceABookFromACollectionSuccessfully() throws IOException, URISyntaxException {
         book.verifyReplaceABookFromACollectionSuccessfully(replaceBookResponse, userInfor.getUserID(), tokenInfor.getToken());
     }
 }

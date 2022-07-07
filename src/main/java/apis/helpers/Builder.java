@@ -8,10 +8,12 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import utils.ConfigLoader;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Map;
 
 public class Builder {
-    static RequestSpecification getRequestSpec() {
+    static RequestSpecification getRequestSpec() throws IOException, URISyntaxException {
         return new RequestSpecBuilder()
                 .setBaseUri(ConfigLoader.getInstance().getBaseUri())
                 .setAccept(ContentType.JSON)

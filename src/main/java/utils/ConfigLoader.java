@@ -1,14 +1,15 @@
 package utils;
 
-import java.util.Properties;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import models.Config;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class ConfigLoader {
-    private final Properties properties;
     private static ConfigLoader configLoader;
-
-    private ConfigLoader() {
-        properties = PropertyUtils.propertyLoader("src/main/resources/config.properties");
-    }
 
     public static ConfigLoader getInstance() {
         if (configLoader == null) {
@@ -18,10 +19,24 @@ public class ConfigLoader {
         return configLoader;
     }
 
-    public String getBaseUri() {
-        String prop = properties.getProperty("baseUri");
+    public String getBaseUri() throws IOException, URISyntaxException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        URL environmentPath = getClass().getClassLoader().getResource("environment.json");
+        Config environmentVariable = objectMapper.readValue(new File(environmentPath.toURI()), Config.class);
+        String environment =  System.getProperty("environment");
+        String prop = null;
+
+        if(environment.equals("dev")) {
+            prop = environmentVariable.getDev().getUrl();
+        }
+        if(environment.equals("test")) {
+            prop = environmentVariable.getTest().getUrl();
+        }
+        if(environment.equals("staging")) {
+            prop = environmentVariable.getStaging().getUrl();
+        }
+
         if (prop != null) return prop;
         else throw new RuntimeException("Property baseUri is not specified in the properties file");
     }
 }
-

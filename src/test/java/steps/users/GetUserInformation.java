@@ -8,6 +8,9 @@ import cucumber.api.java.en.When;
 import io.restassured.response.Response;
 import steps.ScenarioContext;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class GetUserInformation {
     private ScenarioContext scenarioContext;
     private Response userInformationResponse;
@@ -19,7 +22,7 @@ public class GetUserInformation {
     }
 
     @When("^I get user information$")
-    public void getUserInformation() {
+    public void getUserInformation() throws IOException, URISyntaxException {
         userInfor = (CreateUserResponse) scenarioContext.getContext("UserResponse");
         GenerateTokenResponse tokenInfor = (GenerateTokenResponse) scenarioContext.getContext("GenerateTokenResponse");
         userInformationResponse = user.getUserInformation(userInfor.getUserID(), tokenInfor.getToken());

@@ -1,0 +1,11 @@
+{
+  "dev": {
+    "url": "https://demoqa.com"
+  },
+  "test": {
+    "url": "https://test-demoqa.com"
+  },
+  "staging": {
+    "url": "https://staging-demoqa.com"
+  }
+}

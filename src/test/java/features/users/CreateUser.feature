@@ -5,4 +5,4 @@ Feature: Create user
     Then I verify create new user successfully
     Examples:
     |username|password|
-    |"KimthaThi1111"|"Kimthao34451111%%"|
+    |"KimthaTheeei1111aaa"|"Kimthao34451111%%"|

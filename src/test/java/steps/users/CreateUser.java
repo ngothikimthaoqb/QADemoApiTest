@@ -9,6 +9,9 @@ import cucumber.api.java.en.When;
 import io.restassured.response.Response;
 import steps.ScenarioContext;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class CreateUser {
     private ScenarioContext scenarioContext;
     private Response createUserResponse;
@@ -23,7 +26,7 @@ public class CreateUser {
     }
     @Given("^I create user with username as (.*) and password as (.*)$")
     @When("^I create new user with username as (.*) and password as (.*)$")
-    public void createUser(String username, String password){
+    public void createUser(String username, String password) throws IOException, URISyntaxException {
         userRequest = user.setUserRequest(username,password);
         createUserResponse = user.createUser(userRequest);
         userResponse = createUserResponse.as(CreateUserResponse.class);
