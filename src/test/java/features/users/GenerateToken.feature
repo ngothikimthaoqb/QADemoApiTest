@@ -6,4 +6,5 @@ Feature: Generate token
     Then I verify generate token successfully
     Examples:
       |username|password|
-      |"ThaoNgoKim140"|"Kimthao3445$1"|
+      |"ThaoNgoKim04"|"Kimthao3445$1"|
+

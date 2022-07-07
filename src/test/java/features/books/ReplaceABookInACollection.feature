@@ -10,4 +10,4 @@ Scenario Outline: Replace a book in a collection successfully
 
   Examples:
     | username     | password       |
-    | "ThaoNgoKim120" | "KimThao1234@1" |
+    | "ThaoNgoKim02" | "KimThao1234@1" |

@@ -7,4 +7,5 @@ Feature: Get user information
     Then I verify get user information successfully
     Examples:
       |username|password|
-      |"ThaoNgoKim150"|"Kimthaao3445$1"|
+      |"ThaoNgoKim05"|"Kimthaao3445$1"|
+
