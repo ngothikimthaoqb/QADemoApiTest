@@ -9,4 +9,4 @@ Feature: Delete a book from a collection
 
     Examples:
       | username     | password       |
-      | "Thao123qe4 | "KimThao1234@1" |
+      | "ThaoNgoKim1" | "KimThao1234@1" |
